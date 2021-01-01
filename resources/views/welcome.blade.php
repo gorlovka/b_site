@@ -66,34 +66,61 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+            <div class="top-right links">
+                @auth
+                <a href="{{ url('/home') }}">Home</a>
+                @else
+                <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}">Register</a>
+                @endif
+                @endauth
+            </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Погода
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <form action="{{ route('getWeatherForDate') }}" method="post">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="exampleInputDate">
+                            Дата
+                        </label>
+                        <input type="date" class="form-control" id="exampleInputDate" name="date"  placeholder="Дата" value={{ $date }}>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">
+                        Отправить
+                    </button>
+                </form>
+
+
+
+                <div class="row mt-5 font-weight-bold">
+                    <div class="col-12">
+                        @isset($temperature)
+                        <b> 
+                            <?php // должна быть отдельная компонента, которая будет решать эту ситуацию ?>
+                            @if(false === $temperature)
+                            Нет данных о погоде за это число
+                            @else
+                            Температура {{ $temperature }} градусов
+                            @endif
+                        </b>
+
+                        @endisset
+
+
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </body>
