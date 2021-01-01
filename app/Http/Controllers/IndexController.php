@@ -19,7 +19,6 @@ class IndexController extends Controller
 
     public function index()
     {
-
         $response = (new JsonRpcClient())
               ->send('weather.getHistory',
               [
@@ -56,9 +55,8 @@ class IndexController extends Controller
         $date = $request->input('date');
 
         $response = (new JsonRpcClient())
-              ->send('weather.getByDate',
-              [
-           'date' => $date
+              ->send('weather.getByDate', [
+                 'date' => $date
         ]);
 
         $temperature = Arr::get($response, 'result.temperature');
