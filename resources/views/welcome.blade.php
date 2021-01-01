@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-cente position-ref full-height">
             @if (Route::has('login'))
             <div class="top-right links">
                 @auth
@@ -101,10 +101,10 @@
                 </form>
 
 
+                @isset($temperature)
 
                 <div class="row mt-5 font-weight-bold">
                     <div class="col-12">
-                        @isset($temperature)
                         <b> 
                             <?php // должна быть отдельная компонента, которая будет решать эту ситуацию ?>
                             @if(false === $temperature)
@@ -113,12 +113,19 @@
                             Температура {{ $temperature }} градусов
                             @endif
                         </b>
-
-                        @endisset
-
-
                     </div>
                 </div>
+
+                @endisset
+
+                @isset($tableTemperatureLastNDays)
+                <div class="row mt-5 font-weight-bold">
+                    <?php // inline стили нехорошо?>                    
+                    <div class="col-12" style='margin:0 auto; width: 50%;'>
+                        {{ $tableTemperatureLastNDays }}
+                    </div>
+                </div>
+                @endisset
 
 
             </div>
