@@ -1,61 +1,26 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Требуется продемонстрировать: навыки работы с SOA архитектурой работу с фреймворком * умение работать с API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Задача. Выберите один из фреймворков для реализации задачи: Laravel, Yii2 или Phalcon. Создайте два отдельных проекта со следующими названиями: site и weather_history.
 
-## About Laravel
+Проект weather_history отвечает за сбор и хранение данных о погодных условиях, в рамках тестового задания Вам нужно заполнить БД случайными числами с ежедневными прогнозами за последние 6 месяцев.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+База данных на ваш выбор: MySQL, Postgres, SQLite. Структура таблицы history: id (int), temp (температура - float), date_at (date).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+weather_history должен принимать и обрабатывать следующие json-rpc запросы: // получить прогноз за конкретную дату {"jsonrpc": "2.0", "method": "weather.getByDate", "params": {"date": "2020-02-30"}, "id": 1}
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+// получить за последние 30 дней {"jsonrpc": "2.0", "method": "weather.getHistory", "params": {"lastDays": 30}, "id": 1}
 
-## Learning Laravel
+Проект site запрашивает у weather_history данные через json-rpc протокол. Не используйте ajax запросы напрямую, только back-end. На главной странице выведите форму с полем "Дата", отправка формы через POST запрос в site, site делает json-rpc запрос в weather_history, метод weather.getByDate.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Сообщение об ошибке. Если формат даты заполнен некорректно, верните сообщение об ошибку и следуйте спецификации json-rpc.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Если данные верны. Под формой фильтрации выведите результат: Температура {x} градусов.
 
-## Laravel Sponsors
+На главной странице дополнительно выведите выведите таблицу с историей за последние 30 дней, получите данные через метод weather.getHistory с параметром lastDays: 30.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+Senior PHP developer (удаленно) от 230 000 руб. на руки
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+Барышев Игорь Александрович Санкт-Петербург https://donetsk-ru.hh.ru/vacancy/40758361?query=php Барышев Игорь (tg: @igorbars) +7 (918) 7749701, Если не отвечу на Email сразу. Пишите в tg: @igorbars igor.barysh@rambler.ru @igorbars
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Тестовое задание на позицию PHP-разработчика. ЗП $3000+
